@@ -1,6 +1,6 @@
 # Reuben Hudson Site
 
-reubenhudson.net
+https://reubenhudson.net
 
 ## Credits
 
