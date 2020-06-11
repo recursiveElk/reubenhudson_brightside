@@ -9,9 +9,74 @@
 		<meta name="author" content="recursiveElk" />
 		<link rel="shortcut icon" href="favicon.ico">
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap" rel="stylesheet">
+
 	</head>
-	<body class="demo-1">
-		<main>
+	<body  class="demo-1">
+		<main >
+			<div class="frame__content">
+				<p>Stepped into the bright side
+				I got time, time on my side
+				Baby you on my team
+				Grass is green, know what I mean Stepped into the bright side
+				I got time, time on my side Baby you on my team Grass is green
+				
+				Stepped into the bright side
+				I got time, time on my side
+				Baby you on my team
+				Grass is green, know what I mean Stepped into the bright side
+				I got time, time on my side
+				Baby you on my team
+				Grass is green, know what I mean
+
+				Man, some people live like they’re Written by Kubrick
+				Walking round to a soundtrack
+				Of orchestral music
+				I was jelly of these plots
+				Cos I thought they were greener Wondering, wheres my pool
+				And my brand new beemer
+				See, I had to trust
+				Hope that it’d be fine
+				I’m getting better with age
+				Like Italian wine
+				Feel so damn lucky I’ma hit the casino Have my baby kiss my dice
+				Just because it routine
+				But I already won, I already got the jackpot
+
+				Now the skies are blue Never seemed so clear I’ll fall like the sun Then I’ll rise again
+
+				Now the skies so blue Never did seem so clear
+				I’ll disappear like the moon Then I’ll come around again
+
+				Stepped into the bright side
+				I got time, time on my side
+				Baby you on my team
+				Grass is green, know what I mean Stepped into the bright side
+				I got time, time on my side
+				Baby you on my team
+				Grass is green, know what I mean
+				
+				Gotta count your blessings
+				Out of every little lesson
+				That I learned between detentions It was always sentimental ones that Really spoke something to me Gotta poke fun at every
+				Little broke bit cos it’ll go
+				I switched gears, let out my tears And started looking
+				Once I could see the future
+				I finally started
+				Booking up my time
+				With people I’d rather see
+				Started going to the places
+				That I’d rather be
+
+				Found out what’s important what
+				Keeps my grass so green
+				People that I needed like
+				Need y’all on my team
+				Listened for the sweeter sounds
+				Living in a dream
+				Mama I’m coming home
+				Mama I’m coming home
+				</p></div>
 			<div class="frame">
 				<div 
 					id="gl" 
@@ -21,9 +86,55 @@
 					data-verticalThreshold="15">
 				</div>
 				<div class="frame__title-wrap"><img class="frame__title" src="img/Bright_Side_text.png" alt=""></div>
-				<a class="frame__github" href="https://github.com/recursiveElk">GitHub</a>
+				<div class="frame__scroll"><a id="scroll"><span></span></a></div>
+				<a class="frame__github" href="https://github.com/recursiveElk">G</a>
+			</div>
+			<div id="target" class="main-copy" >
+				<a href="https://music.apple.com/nz/album/1516204325?app=music"><h1>Apple Music</h1></a>
+				<a href="https://open.spotify.com/album/72Wry5v3qVpBoNTmoCEdKu"><h1>Spotify</h1></a>
+				<a href="https://music.apple.com/nz/album/1516204325?app=itunes"><h1>iTunes</h1></a>
+				<a href="https://www.facebook.com/reubenhudsontunes/"><h1>Facebook</h1></a>
 			</div>
 		</main>
 		<script src="js/app.js"></script>
+		<script>
+		function getElementY(query) {
+			return window.pageYOffset + document.querySelector(query).getBoundingClientRect().top
+		}
+
+		function doScrolling(element, duration) {
+			var startingY = window.pageYOffset
+			var elementY = getElementY(element)
+			// If element is close to page's bottom then window will scroll only to some position above the element.
+			var targetY = document.body.scrollHeight - elementY < window.innerHeight ? document.body.scrollHeight - window.innerHeight : elementY
+			var diff = targetY - startingY
+			// Easing function: easeInOutCubic
+			// From: https://gist.github.com/gre/1650294
+			var easing = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 }
+			var start
+
+			if (!diff) return
+
+			// Bootstrap our animation - it will get called right before next frame shall be rendered.
+			window.requestAnimationFrame(function step(timestamp) {
+				if (!start) start = timestamp
+				// Elapsed miliseconds since start of scrolling.
+				var time = timestamp - start
+				// Get percent of completion in range [0, 1].
+				var percent = Math.min(time / duration, 1)
+				// Apply the easing.
+				// It can cause bad-looking slow frames in browser performance tool, so be careful.
+				percent = easing(percent)
+
+				window.scrollTo(0, startingY + diff * percent)
+
+				// Proceed with animation as long as we wanted it to.
+				if (time < duration) {
+					window.requestAnimationFrame(step)
+				}
+			})
+		}
+		document.getElementById('scroll').addEventListener('click', doScrolling.bind(null, '#target', 1500))
+		</script>
 	</body>
 </html>
