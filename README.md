@@ -1,6 +1,8 @@
-# Reuben Hudson Site
+# Reuben Hudson - Brightside
 
-https://reubenhudson.net
+Demo: https://dreamy-goodall-e5ee7b.netlify.app/
+
+A small site for the launch of an ep.
 
 ## Credits
 
